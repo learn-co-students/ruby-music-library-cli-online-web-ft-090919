@@ -9,11 +9,23 @@ class MusicLibraryController
     MusicImporter.new(path).import
   end
   
-  def list_artists
-      Artist.all.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |artist, index|
-        puts "#{index}. #{artist.name}"
-      end
+  
+  def list_songs_by_artist
+    puts "Please enter the name of an artist:"
+    input = gets.strip
+  end
+
+  def list_genres
+    Genre.all.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |genre, index|
+      puts "#{index}. #{genre.name}"
     end
+  end
+  
+  def list_artists
+    Artist.all.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |artist, index|
+      puts "#{index}. #{artist.name}"
+    end
+  end
   
   def list_songs
     Song.all.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |song, index|
