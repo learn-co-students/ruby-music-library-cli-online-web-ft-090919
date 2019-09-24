@@ -1,3 +1,5 @@
+require "pry"
+
 class MusicLibraryController
   
   attr_accessor :path
@@ -7,8 +9,16 @@ class MusicLibraryController
     MusicImporter.new(path).import
   end
   
+  def list_artists
+      Artist.all.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |artist, index|
+        puts "#{index}. #{artist.name}"
+      end
+    end
+  
   def list_songs
-    
+    Song.all.sort{|a, b| a.name <=> b.name}.each.with_index(1) do |song, index|
+      puts "#{index}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+    end
   end
   
   def call
