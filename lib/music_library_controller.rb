@@ -1,5 +1,3 @@
-require "pry"
-
 class MusicLibraryController
   
   attr_accessor :path
@@ -11,14 +9,11 @@ class MusicLibraryController
   
   def play_song
     puts "Which song number would you like to play?"
-    list_songs
     input = gets.strip.to_i
-    # list_songs.each.with_index(1) do |song, index|
-    #   song = song.split(". ").last
-    #   if index = input
-    #     puts "song"
-    #   end
-    # end
+    if (1..Song.all.length).include?(input -=1)
+      song = Song.all.sort{ |a, b| a.name <=> b.name }[input]
+    end
+    puts "Playing #{song.name} by #{song.artist.name}" if song
   end
   
   def list_songs_by_genre
