@@ -9,6 +9,18 @@ class MusicLibraryController
     MusicImporter.new(path).import
   end
   
+  def play_song
+    puts "Which song number would you like to play?"
+    list_songs
+    input = gets.strip.to_i
+    # list_songs.each.with_index(1) do |song, index|
+    #   song = song.split(". ").last
+    #   if index = input
+    #     puts "song"
+    #   end
+    # end
+  end
+  
   def list_songs_by_genre
     puts "Please enter the name of a genre:"
     input = gets.strip
