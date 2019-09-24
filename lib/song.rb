@@ -10,7 +10,7 @@ class Song
     self.artist = artist if artist
     self.genre = genre if genre
   end
-  
+
   def self.create_from_filename(filename)
     new_from_filename(filename).tap {|song| song.save}
   end
@@ -24,6 +24,7 @@ class Song
     
     new(song_name, artist, genre)
   end
+  
   
   def self.find_or_create_by_name(name)
     find_by_name(name) || create(name)
