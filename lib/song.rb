@@ -20,17 +20,11 @@ class Song
 
   def genre=(genre)
     @genre = genre
-    genre.add_song(self)
+    genre.songs << self unless genre.songs.include?(self)
   end
 
   def self.all
     @@all
-  end
-
-  def self.create(name, artist = nil, genre = nil)
-    song = self.new(name, artist, genre)
-    song.save
-    song
   end
 
   def self.new_from_filename(filename)
