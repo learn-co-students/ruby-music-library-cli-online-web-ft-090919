@@ -6,7 +6,6 @@ class Song
         @name = name
         self.artist = artist
         self.genre = genre
-        save
     end
 
     def self.create(name)
