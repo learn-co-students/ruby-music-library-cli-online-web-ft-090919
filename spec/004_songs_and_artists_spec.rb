@@ -10,6 +10,7 @@ describe "Associations — Song and Artist:" do
         expect(artist.instance_variable_defined?(:@songs)).to be(true)
         expect(artist.instance_variable_get(:@songs)).to eq([])
       end
+
     end
 
     describe "#songs" do
