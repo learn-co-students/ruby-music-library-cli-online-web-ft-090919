@@ -4,20 +4,22 @@ class Artist
     def initialize(name)
         @name = name
         @songs = []
-        save
     end
 
     def add_song(song)
        if song.artist != self
         song.artist = self
+       end
+       if @songs.include?(song) == false
         @songs << song
        end
     end
     
     def genres
-        songs.collect do |song|
+        genre_array = songs.collect do |song|
             song.genre
         end
+        genre_array.uniq
     end
 
     def songs

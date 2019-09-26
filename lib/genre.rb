@@ -4,7 +4,7 @@ class Genre
     def initialize(name)
         @name = name
         @songs = []
-        save
+        
     end
 
     def self.create(name)
@@ -15,6 +15,13 @@ class Genre
 
     def songs
         @songs
+    end
+
+    def artists
+       artist_array = @songs.collect do |song|
+            song.artist
+        end
+        artist_array.uniq
     end
 
     def save
@@ -29,3 +36,4 @@ class Genre
         @@all.clear
     end
 end
+
