@@ -1,4 +1,3 @@
-
 require 'pry'
 class MusicLibraryController
 
@@ -100,4 +99,3 @@ class MusicLibraryController
     end
 
 end
-
