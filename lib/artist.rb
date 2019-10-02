@@ -1,7 +1,9 @@
 class Artist
+  extend Concerns::Findable
   attr_accessor :name
   attr_reader :songs
-  @@all = []
+  @@all = [] 
+  
  
   def initialize(name)
     @name = name
@@ -10,10 +12,12 @@ class Artist
   end
   
   def add_song(song)
-    if song.artist != self &&! @songs.include?(song)
-      song.artist = self
-      @songs << song
-    end
+    song.artist = self if song.artist != self
+    @songs << song if !@songs.include?(song)
+  end
+  
+  def genres 
+    Song.all.collect{ |song| song.genre }.uniq
   end
   
   def self.all 
