@@ -1,6 +1,5 @@
-
-
 class Song
+  extend Concerns::Findable
 
   attr_accessor :name
 
@@ -28,12 +27,6 @@ class Song
     @@all << self
   end
 
-  def self.create(new_song)
-    song = Song.new(new_song)
-    @@all << song
-    song
-  end
-
   def artist=(artist)
     @artist = artist
     @artist.add_song(self)
@@ -51,4 +44,5 @@ class Song
   def genre
     @genre
   end
+
 end
