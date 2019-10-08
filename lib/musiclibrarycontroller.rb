@@ -19,16 +19,31 @@ class MusicLibraryController
       puts "To quit, type 'exit'."
       puts "What would you like to do?"
       input = gets.strip
-    end
+      case input
+        when 'list songs'
+          list_songs
+        when 'list artists'
+          list_artists
+        when 'list genres'
+          list_genres
+        when 'list artist'
+          list_songs_by_artist
+        when 'list genre'
+          list_songs_by_genre
+        when 'play song'
+          play_song
+        end
+      end
   end
 
   def list_songs
     songs_sorted_by_name = Song.all.sort_by do |song|
       song.name
     end
-    songs_sorted_by_name.uniq.map.with_index(1) do |song, index|
+    songs_sorted_by_name.uniq.each.with_index(1) do |song, index|
       puts "#{index}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
     end
+    songs_sorted_by_name.uniq
   end
 
   def list_artists
@@ -76,12 +91,18 @@ class MusicLibraryController
   end
 
   def play_song
+    songs = Song.all.sort_by do |song|
+      song.name
+    end
+    songs = songs.uniq
     input = ""
     puts "Which song number would you like to play?"
-    input = gets.chomp
-    song = list_songs[input.to_i + 1]
-    if song != nil
+    input = gets.chomp.to_i
+    song = songs[input - 1]
+    if (input > 0 && input != nil && input <= songs.length)
+      # if !!Song.find_by_name(song.name)
       puts "Playing #{song.name} by #{song.artist.name}"
+      # end
     end
   end
 
